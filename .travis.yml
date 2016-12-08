@@ -32,7 +32,9 @@ addons:
     project:
       name: "richelbilderbeek/travis_qmake_gcc_cpp14_coverity"
     notification_email: richel@richelbilderbeek.nl
-    build_command_prepend: qmake
+    build_command_prepend: 
+      cov-configure --comptype gcc --compiler gcc-5
+      qmake
     build_command: make
     branch_pattern: coverity_scan
 
