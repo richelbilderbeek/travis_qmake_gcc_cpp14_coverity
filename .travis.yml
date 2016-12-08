@@ -14,10 +14,10 @@ install:
   - sudo apt-get install -qq g++-5
 
 before_script: 
-  #- qmake
+  - qmake
 
 script: 
-  #- make
+  - make
   - ./travis_qmake_gcc_cpp14_coverity
 
 
@@ -35,6 +35,9 @@ addons:
     build_command_prepend: qmake
     build_command: make
     branch_pattern: coverity_scan
+
+after_success:
+  - cat /home/travis/build/richelbilderbeek/travis_qmake_gcc_cpp14_coverity/cov-int/scm_log.txt
 
 after_failure:
   - cat /home/travis/build/richelbilderbeek/travis_qmake_gcc_cpp14_coverity/cov-int/scm_log.txt
