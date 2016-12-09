@@ -14,6 +14,8 @@ install:
   - sudo apt-get install -qq g++-5
   # g++ should call g++-5
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
+  # Coverity Scan
+  - cov-configure --comptype gcc --compiler /usr/bin/g++
 
 before_script: 
   - qmake
