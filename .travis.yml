@@ -1,6 +1,25 @@
-sudo: require
 language: cpp
 compiler: gcc
+dist: trusty
+
+# Coverity Scan
+env:
+  global:
+    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+    #   via the "travis encrypt" command using the project repo's public key
+    - secure: "GgAgW1tYkFns4UD+nECHNGZkwgHIHk9bNIS44HXjFObpm0RYE94PaXDlNekLNWgC3/gqcu5ORzXTSD9hBXbs+XrD3Xtb9fcCfjb2HyK4bAuUJTXBpRhAV9ZiaXAq7FdwES2rhsEjQpJDOo1XrHO/yZUrYBPpKyP6oU3eWvpMjoy5D7Yx9rLo9vff62nVaG7UoYF6SCSgLVXk0IrpvTST/JUz2fxe2wjUue8xucMXo4xJ7FuwiI2HxUVdr22qYbUDKKvH2Y4C4h/vYX3nlMw+UBRMVooMJDSFi6ltNE5tbLHVSPkCBqZYaLcapZ6LJtGLtwIMaTgbnNM+Eeyj7WdSe4PsX3dH3GPW2O4HMIaogHucRtNGweLvWdKfruWDEl27g/oFI/J6HdZUzOLrR7jHW2Otk9JfV/6E09oM6zw1fE8OB4KMNcb00IR7noEAX26k0gDfl35xLd+n87aCT/dL0614Z/dktOAGdjkFRvVqEjDGRkkZdS9Oy3h4au2yVBOelZ56CB+V8SDmEbKbxT+MS05SZUjwKOSZy25b0SnGI4+2Ctea57sMxclg++SEz+MHC31LFuLqGf8+7nBvwK86y8AKKzL2nrFAnoSSIjCFQOnadHdZQf9kYcGHm4oPHc4XHPoeCNPhBSeyNMzURzMZIt1Rvjqf7jgG3znC/ZmG5as="
+
+
+# Coverity Scan
+addons:
+  coverity_scan:
+    project:
+      name: "richelbilderbeek/travis_qmake_gcc_cpp14_coverity"
+      description: "<Your project description here>"
+    notification_email: richel@richelbilderbeek.nl
+    build_command_prepend: qmake
+    build_command: make
+    branch_pattern: coverity_scan
 
 before_install:
   # C++14
@@ -11,27 +30,11 @@ before_install:
 
 install: 
   # C++14
-  - sudo apt-get install -qq g++-5
+  - sudo apt-get install -qq g++-6
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 
 script: 
   - qmake
   - make
   - ./travis_qmake_gcc_cpp14_coverity
 
-
-env:
-  global:
-    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-    #   via the "travis encrypt" command using the project repo's public key
-    - secure: "GgAgW1tYkFns4UD+nECHNGZkwgHIHk9bNIS44HXjFObpm0RYE94PaXDlNekLNWgC3/gqcu5ORzXTSD9hBXbs+XrD3Xtb9fcCfjb2HyK4bAuUJTXBpRhAV9ZiaXAq7FdwES2rhsEjQpJDOo1XrHO/yZUrYBPpKyP6oU3eWvpMjoy5D7Yx9rLo9vff62nVaG7UoYF6SCSgLVXk0IrpvTST/JUz2fxe2wjUue8xucMXo4xJ7FuwiI2HxUVdr22qYbUDKKvH2Y4C4h/vYX3nlMw+UBRMVooMJDSFi6ltNE5tbLHVSPkCBqZYaLcapZ6LJtGLtwIMaTgbnNM+Eeyj7WdSe4PsX3dH3GPW2O4HMIaogHucRtNGweLvWdKfruWDEl27g/oFI/J6HdZUzOLrR7jHW2Otk9JfV/6E09oM6zw1fE8OB4KMNcb00IR7noEAX26k0gDfl35xLd+n87aCT/dL0614Z/dktOAGdjkFRvVqEjDGRkkZdS9Oy3h4au2yVBOelZ56CB+V8SDmEbKbxT+MS05SZUjwKOSZy25b0SnGI4+2Ctea57sMxclg++SEz+MHC31LFuLqGf8+7nBvwK86y8AKKzL2nrFAnoSSIjCFQOnadHdZQf9kYcGHm4oPHc4XHPoeCNPhBSeyNMzURzMZIt1Rvjqf7jgG3znC/ZmG5as="
-
-
-addons:
-  coverity_scan:
-    project:
-      name: "richelbilderbeek/travis_qmake_gcc_cpp14_coverity"
-      description: "<Your project description here>"
-    notification_email: richel@richelbilderbeek.nl
-    build_command_prepend: qmake
-    build_command: make
-    branch_pattern: coverity_scan
