@@ -24,5 +24,6 @@ More complex builds:
  * Use C++17: [travis_qmake_gcc_cpp17_coverity](https://www.github.com/richelbilderbeek/travis_qmake_gcc_cpp17_coverity)
 
 Less complex builds:
+ * No Coverity Scan: [travis_qmake_gcc_cpp14](https://www.github.com/richelbilderbeek/travis_qmake_gcc_cpp14)
  * Use C++98: [travis_qmake_gcc_cpp98_coverity](https://www.github.com/richelbilderbeek/travis_qmake_gcc_cpp98_coverity)
  * Use C++11: [travis_qmake_gcc_cpp11_coverity](https://www.github.com/richelbilderbeek/travis_qmake_gcc_cpp11_coverity)
